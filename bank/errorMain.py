@@ -4,32 +4,36 @@ class Customer:
 
     customers = []
 
+
     def FetchAllCustomer(self):
         """ Fetch All customers """
         return self.customers
+
 
     def FetchCustomer(self, accountNo):
         """  Fetch Single customer based on account no """
         for customer in self.customers:
             if customer['accountNo'] == accountNo:
-                return customer # instead of returning balance we have returned customer dict
-
+                return customer
+            
         return False
 
+    
     def Register(self, name, accountNo):
         """ Register customer with name and account No. and make initial balance 0 """
         checkExistingCustomer = self.FetchCustomer(accountNo)
         if checkExistingCustomer == False:
             customerDict = {
                 'name': name,
-                'accountNo': accountNo,
-                'balance': 0
+                'accountNo' : accountNo,
+                'balance' : 0
             }
 
             self.customers.append(customerDict)
             return customerDict
         else:
             return 'Customer already exist with same account no'
+
 
     def UpdateBalance(self, accountNo, amount):
         """  Update Customer's balance based on Amount """
@@ -46,26 +50,30 @@ class Banking(Customer):
     def __init__(self, accountNo):
         self.accountNo = accountNo
 
+
     def Balance(self):
-        """ Balance method return a customer dict """
         customer = super().FetchCustomer(self.accountNo)
         if customer:
-            return customer
+            return customer["balance"]
         return False
+
 
     def Deposite(self, amount):
         customerBalance = self.Balance()
         if customerBalance:
-            amount = int(customerBalance["balance"]) + int(amount)
-            return super().UpdateBalance(self.accountNo, amount)
+            amount = int(customerBalance) + int(amount)
+            x = super().UpdateBalance(self.accountNo, amount)
+            return x
         return False
+
 
     def withDraw(self, amount):
         customerBalance = self.Balance()
         if customerBalance:
-            amount = int(customerBalance["balance"]) - int(amount)
-            return super().UpdateBalance(self.accountNo, amount)
-        return False
+            amount = int(customerBalance) - int(amount)
+            x =  super().UpdateBalance(self.accountNo, amount)
+            return False
+
 
 
 operation = 0
@@ -95,15 +103,14 @@ while operation != 9:
         customerData = customer.FetchAllCustomer()
 
         for singleCustomer in customerData:
-            print("{} - {} - {}".format(singleCustomer['name'],
-                  singleCustomer['accountNo'], singleCustomer['balance']))
+            print("{} - {} - {}".format(singleCustomer['name'], singleCustomer['accountNo'], singleCustomer['balance']))
 
     elif operation == 3:
         accountNo = input("Please Enter Customer's Account No. : ")
         banking = Banking(accountNo)
         customerData = banking.FetchCustomer(accountNo)
         if customerData:
-
+            
             while bankOperation != 9:
                 print(f'Welcom {customerData["name"]}')
                 print('''
@@ -113,25 +120,26 @@ while operation != 9:
                     9. Back
                 ''')
                 bankOperation = int(input('Select Banking Operation: '))
-
+                
                 if bankOperation == 1:
                     customerBalance = banking.Balance()
-                    print(
-                        f"Customer's balance is: {customerBalance['balance']}")
+                    print(customerBalance)
+                    print(f"Customer's balance is: {customerBalance}")
                 elif bankOperation == 2:
-                    depositeAmount = int(
-                        input('Please Enter Amount to be deposite: '))
-                    x = banking.Deposite(depositeAmount)
+                    amount = int(input('Please Enter Amount to be deposite: '))
+                    x = banking.Deposite(amount)
 
-                    print(f'success')
+                    print(f'success {x}')
                 elif bankOperation == 3:
-                    withdrawAmount = int(
-                        input('Please Enter Amount to be withdraw: '))
-                    banking.withDraw(withdrawAmount)
-                    print(f'success')
-                elif bankOperation == 4:
+                    amount = int(input('Please Enter Amount to be withdraw: '))
+                    banking.withDraw(amount)
+                    print(f'success {x}')
+                elif bankOperation == 4: 
                     print('bye')
                 else:
                     print('Invalid Option')
         else:
             print("No data Found")
+
+
+
