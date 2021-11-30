@@ -140,6 +140,6 @@ person.bedRoom()
     
 
 
-# tata = Tata()
+# tata = Tata("models")
 # tata.model()
 # tata.name()
