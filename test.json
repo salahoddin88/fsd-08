@@ -1,0 +1,19 @@
+[
+    {
+        "name": "nikhil",
+        "age": "28",
+        "city": "Mumbai",
+        "skills": "python"
+    }, {
+        "name": "nikhil",
+        "age": "28",
+        "city": "Mumbai",
+        "skills": "python"
+    },
+    {
+        "name" : "nikhil",
+        "age" : "28",
+        "city" : "Mumbai",
+        "skills" : "python"
+    }
+]
