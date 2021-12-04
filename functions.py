@@ -167,3 +167,84 @@
 
 # fourthPower = nthPower(4)
 # print(fourthPower(4))
+
+
+
+""" Recursive functions
+    function calling it self
+"""
+
+
+# def test():
+#     print('hello')
+#     test()
+
+# test()
+
+def sumTill(target_number):
+
+    if target_number == 1:
+        print('Target Number', target_number)
+        return target_number
+
+    # Recursive Case
+    else:
+        print('Target Number', target_number)
+        target_number + sumTill(target_number - 1)
+        return target_number
+
+
+# def sumTill(1):
+
+#     if 1 == 1:
+#         print('Target Number', 1)
+#         return target_number
+
+#     # Recursive Case
+#     else:
+#         print('Target Number', 2)
+#         2 + sumTill(1)
+#         return target_number
+
+
+# Driver Code
+# print(sumTill(5))
+
+
+# def remove(string):
+#     if not string:
+#         return ""
+    
+#     # recursive case
+#     if string[0] == '\t' or string[0] == " " or string[0] == '\n':
+#         return remove(string[1:])
+#     else:
+#         return string[0] + remove(string[1:])
+
+
+
+# string = "hello\tMohit\nNikhil"
+# x = remove(string)
+# print(x)
+    
+
+# n = 5 
+# n * (n-1) * (n-2) * (n-3) * 1
+
+def factorial(n):
+    if n == 1:
+        return n
+    else:
+        return n * factorial(n - 1)
+
+
+# def factorial(5):
+#     if 5 == 1:
+#         return 1
+#     else:
+#         return 5 * 4 * 3 * 2 * 1
+
+
+
+print(factorial(5))
+
