@@ -32,6 +32,6 @@
 with open('workfile.txt', 'r+') as fileObject:
     readData = fileObject.read()
     print(readData)
-    fileObject.seek(0)  # reposition the pointer at 0th position
     fileObject.truncate(0)
+    fileObject.seek(0)
     fileObject.write('Hello')
